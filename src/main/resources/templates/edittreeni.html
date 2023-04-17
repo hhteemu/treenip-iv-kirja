@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"  />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<head>
+	<title>Treenipäiväkirja</title>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+</head>
+<body>
+	<div class="container w-50 pt-5">
+	<h1 align="center">Muokkaa treeniä</h1>
+		<div class="form-group">
+			<form th:object="${treeni}" th:action="@{/savetreeni}" action="#" method="post">
+				<input type="hidden" th:field="*{id}" class="form-control"/>
+				<label for="tyyppilist">Treenimuoto</label>
+				<select id="tyyppilist" th:field="*{tyyppi}" class="form-control">
+				 <option th:each="tyyppi: ${tyypit}" th:value="${tyyppi.tyyppiId}"
+				 th:text="${tyyppi}"></option>
+				</select>
+				<label for="kuvaus">Kuvaus</label>
+				<input type="text" id="kuvaus" th:field="*{kuvaus}" class="form-control"/>
+				<label for="kesto">Kesto</label>
+				<input type="text" id="kesto" th:field="*{kesto}" class="form-control"/>
+				<label for="paivamaara">Päivämäärä</label>
+				<input type="text" id="paivamaara" th:field="*{paivamaara}" class="form-control"/>
+				<label for="muistiinpanot">Muistiinpanot</label>
+				<textarea id="muistiinpanot" th:field="*{muistiinpanot}" class="form-control"></textarea>
+				<div class="pt-2" align="center">
+				<a href="/treenipaivakirja" class="btn btn-danger">Takaisin</a>
+				<input type="submit" class="btn btn-primary" value="Tallenna"></input>		
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
